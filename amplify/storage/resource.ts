@@ -8,7 +8,7 @@ export const storage = defineStorage({
   name: "userImages",
   access: (allow) => ({
     // 允许用户读取、写入和删除自己文件夹中的文件
-    'private/${entity_id}/*': [
+    'private/{entity_id}/*': [
       allow.authenticated.to(['read', 'write', 'delete']),
     ]
   }),
