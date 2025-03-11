@@ -16,12 +16,12 @@ interface Recipe {
 }
 
 // 创建客户端
-export const client = generateClient<Schema>({ 
+const client = generateClient<Schema>({
   authMode: "userPool"
 });
 
 // 创建 AI 钩子
-export const { useAIConversation, useAIGeneration } = createAIHooks(client);
+const { useAIConversation, useAIGeneration } = createAIHooks(client);
 
 export default function AIKit() {
   const [tabValue, setTabValue] = React.useState(0);
