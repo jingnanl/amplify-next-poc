@@ -23,7 +23,9 @@ import {
 import { generateClient } from "aws-amplify/data";
 import React, { useState } from 'react';
 
-const client = generateClient<Schema>();
+const client = generateClient<Schema>({
+  authMode: 'userPool'
+});
 
 export default function App() {
   const [todos, setTodos] = React.useState<Array<Schema["Todo"]["type"]>>([]);
@@ -40,6 +42,7 @@ export default function App() {
     if (newTodoContent.trim()) {
       client.models.Todo.create({
         content: newTodoContent,
+        isDone: false,
       });
       setNewTodoContent('');
       setOpenDialog(false);

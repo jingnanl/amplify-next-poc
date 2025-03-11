@@ -10,7 +10,9 @@ import {
   Logout as LogoutIcon,
   Menu as MenuIcon,
   Settings as SettingsIcon,
-  Task as TaskIcon
+  Task as TaskIcon,
+  Create as CreateIcon,
+  SmartToy as SmartToyIcon
 } from '@mui/icons-material';
 import {
   AppBar,
@@ -127,6 +129,16 @@ function SharedLayout({ children }: { children: React.ReactNode }) {
     setDrawerOpen(false);
   };
 
+  const navigateToHaiku = () => {
+    router.push('/haiku');
+    setDrawerOpen(false);
+  };
+
+  const navigateToAIKit = () => {
+    router.push('/ai-kit');
+    setDrawerOpen(false);
+  };
+
   return (
     <>
       <AppBar position="fixed">
@@ -142,7 +154,9 @@ function SharedLayout({ children }: { children: React.ReactNode }) {
           </IconButton>
           <TaskIcon sx={{ mr: 1 }} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {pathname === '/images' ? '图片管理' : 'Todo 应用'}
+            {pathname === '/images' ? '图片管理' : 
+             pathname === '/haiku' ? '俳句生成器' : 
+             pathname === '/ai-kit' ? 'AI 工具箱' : 'Todo 应用'}
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Typography variant="body2" sx={{ mr: 2 }}>
@@ -240,6 +254,40 @@ function SharedLayout({ children }: { children: React.ReactNode }) {
               </ListItemIcon>
               <ListItemText
                 primary="图片管理"
+                primaryTypographyProps={{
+                  sx: { color: 'primary.contrastText' }
+                }}
+              />
+            </ListItemButton>
+            <ListItemButton
+              sx={{
+                bgcolor: pathname === '/haiku' ? 'primary.dark' : 'transparent',
+                '&:hover': { bgcolor: 'primary.dark' }
+              }}
+              onClick={navigateToHaiku}
+            >
+              <ListItemIcon>
+                <CreateIcon sx={{ color: 'primary.contrastText' }} />
+              </ListItemIcon>
+              <ListItemText
+                primary="俳句生成器"
+                primaryTypographyProps={{
+                  sx: { color: 'primary.contrastText' }
+                }}
+              />
+            </ListItemButton>
+            <ListItemButton
+              sx={{
+                bgcolor: pathname === '/ai-kit' ? 'primary.dark' : 'transparent',
+                '&:hover': { bgcolor: 'primary.dark' }
+              }}
+              onClick={navigateToAIKit}
+            >
+              <ListItemIcon>
+                <SmartToyIcon sx={{ color: 'primary.contrastText' }} />
+              </ListItemIcon>
+              <ListItemText
+                primary="AI 工具箱"
                 primaryTypographyProps={{
                   sx: { color: 'primary.contrastText' }
                 }}
