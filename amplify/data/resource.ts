@@ -66,7 +66,7 @@ const schema = a.schema({
 
   // AI kit
   chat: a.conversation({
-    aiModel: a.ai.model('Claude 3.5 Haiku'),
+    aiModel: a.ai.model('Claude 3.5 Sonnet'),
     systemPrompt: 'You are a helpful assistant',
   })
   .authorization((allow) => allow.owner().identityClaim('username')),
